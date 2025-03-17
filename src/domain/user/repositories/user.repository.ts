@@ -24,5 +24,13 @@ export class UserRepository extends PrismaService{
         })
     }
 
+    async findUserByPhone(phone: string): Promise<User | null> {
+        return await this.user.findUnique({
+            where: {
+                phone: phone
+            }
+        })
+    }
+
     
 }
