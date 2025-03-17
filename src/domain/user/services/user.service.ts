@@ -38,7 +38,7 @@ export class UserService {
     return await this.repository.createUser(userData);
   }
 
-  async login(userData: LoginUserBodySchema): Promise<{ access_token: string }> {
+  async login(userData: LoginUserBodySchema): Promise<{ access_token: string, email: string, role: string, name: string }> {
     const user = await this.repository.findUserByEmail(userData.email);
     if (!user) {
       throw new BadRequestException({
@@ -60,6 +60,7 @@ export class UserService {
     }
 
     const token = await this.jwtService.generateToken(user);
-    return token;
+
+    return {...token, email: user.email, role: user.role, name: user.name};
   }
 }
