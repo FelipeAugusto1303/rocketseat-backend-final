@@ -6,7 +6,7 @@ import { access } from 'fs';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor() {}
 
   async hashPassword(password: string): Promise<string> {
     return bcrypt.hash(password, 10);

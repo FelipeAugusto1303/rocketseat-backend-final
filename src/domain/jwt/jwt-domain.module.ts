@@ -6,8 +6,8 @@ import { JwtDomainService } from './service/jwt-domain.service';
 @Module({
   imports: [
     JwtModule.register({
-      secret: 'colocarChaveSecretaEmUmaVariavelDeAmbiente', // Mantenha isso seguro e use variáveis de ambiente
-      signOptions: { expiresIn: '1h' }, // Tempo de expiração do token
+      secret: process.env.SECRET_JWT,
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   controllers: [],
